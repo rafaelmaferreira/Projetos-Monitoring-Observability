@@ -1,0 +1,109 @@
+version: '3'
+
+networks:
+  tracing:
+    driver: bridge
+
+services: 
+
+  gerador-pessoa:
+    image: fabricioveronez/gerador-pessoa
+    build:
+      dockerfile: Dockerfile
+      context: src/gerador-pessoa/
+    depends_on: 
+     - jaeger
+     - gerador-nome
+     - gerador-documento
+    environment:
+      URL_GERADOR_NOME: "gerador-nome:5000"
+      URL_GERADOR_DOCUMENTO: "gerador-documento:5000" 
+      JAEGER_HOST: "jaeger"
+      JAEGER_PORT: "JAEGER_PORT"
+      JAEGER_SERVICE_NAME: "gerador-pessoa"          
+    networks:
+      - tracing
+    ports:
+      - 5000:5000  
+
+  gerador-nome:
+    image: fabricioveronez/gerador-nome
+    build:
+      dockerfile: Dockerfile
+      context: src/gerador-nome/
+    environment:
+      JAEGER_HOST: "jaeger"
+      JAEGER_PORT: "JAEGER_PORT"
+      JAEGER_SERVICE_NAME: "gerador-nome"       
+    networks:
+      - tracing      
+    depends_on: 
+     - jaeger  
+    ports:
+      - 5001:5000
+      
+  gerador-documento:
+    image: fabricioveronez/gerador-documento
+    build:
+      dockerfile: Dockerfile
+      context: src/gerador-documento/
+    environment:
+      URL_GERADOR_CPF: "gerador-cpf:5000"
+      URL_GERADOR_RG: "gerador-rg:5000"
+      JAEGER_HOST: "jaeger"
+      JAEGER_PORT: "JAEGER_PORT"
+      JAEGER_SERVICE_NAME: "gerador-documento"       
+    networks:
+      - tracing      
+    depends_on: 
+     - jaeger
+     - gerador-cpf
+     - gerador-rg      
+    ports:
+      - 5002:5000   
+      
+  gerador-cpf:
+    image: fabricioveronez/gerador-cpf
+    build:
+      dockerfile: Dockerfile
+      context: src/gerador-cpf/
+    networks:
+      - tracing     
+    environment:
+      JAEGER_HOST: "jaeger"
+      JAEGER_PORT: "JAEGER_PORT"
+      JAEGER_SERVICE_NAME: "gerador-cpf"        
+    depends_on: 
+     - jaeger    
+    ports:
+      - 5003:5000  
+      
+  gerador-rg:
+    image: fabricioveronez/gerador-rg
+    build:
+      dockerfile: Dockerfile
+      context: src/gerador-rg/
+    environment:
+      JAEGER_HOST: "jaeger"
+      JAEGER_PORT: "JAEGER_PORT"
+      JAEGER_SERVICE_NAME: "gerador-rg"        
+    networks:
+      - tracing      
+    depends_on: 
+     - jaeger      
+    ports:
+      - 5004:5000        
+
+  jaeger: 
+    container_name: jeager_tracing
+    image: jaegertracing/all-in-one
+    networks:
+      - tracing    
+    ports: 
+      - "5775:5775/udp"
+      - "6831:6831/udp"
+      - "6832:6832/udp"
+      - "5778:5778"
+      - "16686:16686"
+      - "14268:14268"
+      - "9411:9411"
