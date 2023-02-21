@@ -1,0 +1,128 @@
+datetime="2023-02-21 13:56:53.3294" eventId=0 logLevel="DEBUG" logger="PedeLogo.Catalogo.Api.Program" message="init main" exception="" url= action=
+datetime="2023-02-21 13:56:54.2950" eventId=0 logLevel="INFO" logger="Microsoft.Hosting.Lifetime" message="Now listening on: http://[::]:80" exception="" url= action=
+datetime="2023-02-21 13:56:54.3232" eventId=0 logLevel="INFO" logger="Microsoft.Hosting.Lifetime" message="Application started. Press Ctrl+C to shut down." exception="" url= action=
+datetime="2023-02-21 13:56:54.3438" eventId=0 logLevel="INFO" logger="Microsoft.Hosting.Lifetime" message="Hosting environment: Production" exception="" url= action=
+datetime="2023-02-21 13:56:54.3602" eventId=0 logLevel="INFO" logger="Microsoft.Hosting.Lifetime" message="Content root path: /app" exception="" url= action=
+datetime="2023-02-21 14:00:10.8617" eventId=0 logLevel="INFO" logger="PedeLogo.Catalogo.Api.Controllers.ProdutoController" message="Entrou no Post" exception="" url=http://localhost/Produto action=Post
+datetime="2023-02-21 14:00:16.2070" eventId=13 logLevel="ERROR" logger="Microsoft.AspNetCore.Server.Kestrel" message="Connection id "0HMOK2E4HL9GQ", Request id "0HMOK2E4HL9GQ:00000001": An unhandled exception was thrown by the application." exception="System.TimeoutException: A timeout occured after 30000ms selecting a server using CompositeServerSelector{ Selectors = MongoDB.Driver.MongoClient+AreSessionsSupportedServerSelector, LatencyLimitingServerSelector{ AllowedLatencyRange = 00:00:00.0150000 } }. Client view of cluster state is { ClusterId : "1", ConnectionMode : "Automatic", Type : "Unknown", State : "Disconnected", Servers : [{ ServerId: "{ ClusterId : 1, EndPoint : "Unspecified/pedelogo-mongodb:27017" }", EndPoint: "Unspecified/pedelogo-mongodb:27017", ReasonChanged: "Heartbeat", State: "Disconnected", ServerVersion: , TopologyVersion: , Type: "Unknown", HeartbeatException: "MongoDB.Driver.MongoConnectionException: An exception occurred while opening a connection to the server.
+ ---> System.Net.Internals.SocketExceptionFactory+ExtendedSocketException (00000005, 0xFFFDFFFF): Name or service not known
+   at System.Net.Dns.InternalGetHostByName(String hostName)
+   at System.Net.Dns.ResolveCallback(Object context)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(Exception source)
+   at System.Net.Dns.HostResolutionEndHelper(IAsyncResult asyncResult)
+   at System.Net.Dns.EndGetHostAddresses(IAsyncResult asyncResult)
+   at System.Net.Dns.<>c.<GetHostAddressesAsync>b__25_1(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at MongoDB.Driver.Core.Connections.TcpStreamFactory.ResolveEndPointsAsync(EndPoint initial)
+   at MongoDB.Driver.Core.Connections.TcpStreamFactory.CreateStreamAsync(EndPoint endPoint, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.OpenHelperAsync(CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at MongoDB.Driver.Core.Connections.BinaryConnection.OpenHelperAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Servers.ServerMonitor.InitializeConnectionAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Servers.ServerMonitor.HeartbeatAsync(CancellationToken cancellationToken)", LastHeartbeatTimestamp: "2023-02-21T14:00:16.0696378Z", LastUpdateTimestamp: "2023-02-21T14:00:16.0696385Z" }] }.
+   at MongoDB.Driver.Core.Clusters.Cluster.ThrowTimeoutException(IServerSelector selector, ClusterDescription description)
+   at MongoDB.Driver.Core.Clusters.Cluster.WaitForDescriptionChangedHelper.HandleCompletedTask(Task completedTask)
+   at MongoDB.Driver.Core.Clusters.Cluster.WaitForDescriptionChanged(IServerSelector selector, ClusterDescription description, Task descriptionChangedTask, TimeSpan timeout, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Clusters.Cluster.SelectServer(IServerSelector selector, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoClient.AreSessionsSupportedAfterServerSelection(CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoClient.AreSessionsSupported(CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoClient.StartImplicitSession(CancellationToken cancellationToken)
+   at MongoDB.Driver.OperationExecutor.StartImplicitSession(CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSession[TResult](Func`2 func, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.FindSync[TProjection](FilterDefinition`1 filter, FindOptions`2 options, CancellationToken cancellationToken)
+   at MongoDB.Driver.FindFluent`2.ToCursor(CancellationToken cancellationToken)
+   at MongoDB.Driver.IAsyncCursorSourceExtensions.ToList[TDocument](IAsyncCursorSource`1 source, CancellationToken cancellationToken)
+   at PedeLogo.Catalogo.Api.Controllers.ProdutoController.Get() in /src/src/PedeLogo.Catalogo.Api/Controllers/ProdutoController.cs:line 27
+   at lambda_method(Closure , Object , Object[] )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.Execute(Object target, Object[] parameters)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Prometheus.HttpMetrics.HttpRequestDurationMiddleware.Invoke(HttpContext context)
+   at Prometheus.HttpMetrics.HttpRequestCountMiddleware.Invoke(HttpContext context)
+   at Prometheus.HttpMetrics.HttpInProgressMiddleware.Invoke(HttpContext context)
+   at PedeLogo.Catalogo.Api.Middlewares.HealthMiddleware.<>c.<<UseHealthMiddleware>b__0_0>d.MoveNext() in /src/src/PedeLogo.Catalogo.Api/Middlewares/HealthMiddleware.cs:line 24
+--- End of stack trace from previous location where exception was thrown ---
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)" url=http://localhost/Produto action=Get
+datetime="2023-02-21 14:00:40.9085" eventId=13 logLevel="ERROR" logger="Microsoft.AspNetCore.Server.Kestrel" message="Connection id "0HMOK2E4HL9GR", Request id "0HMOK2E4HL9GR:00000001": An unhandled exception was thrown by the application." exception="System.TimeoutException: A timeout occured after 30000ms selecting a server using CompositeServerSelector{ Selectors = MongoDB.Driver.MongoClient+AreSessionsSupportedServerSelector, LatencyLimitingServerSelector{ AllowedLatencyRange = 00:00:00.0150000 } }. Client view of cluster state is { ClusterId : "1", ConnectionMode : "Automatic", Type : "Unknown", State : "Disconnected", Servers : [{ ServerId: "{ ClusterId : 1, EndPoint : "Unspecified/pedelogo-mongodb:27017" }", EndPoint: "Unspecified/pedelogo-mongodb:27017", ReasonChanged: "Heartbeat", State: "Disconnected", ServerVersion: , TopologyVersion: , Type: "Unknown", HeartbeatException: "MongoDB.Driver.MongoConnectionException: An exception occurred while opening a connection to the server.
+ ---> System.Net.Internals.SocketExceptionFactory+ExtendedSocketException (00000005, 0xFFFDFFFF): Name or service not known
+   at System.Net.Dns.InternalGetHostByName(String hostName)
+   at System.Net.Dns.ResolveCallback(Object context)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw(Exception source)
+   at System.Net.Dns.HostResolutionEndHelper(IAsyncResult asyncResult)
+   at System.Net.Dns.EndGetHostAddresses(IAsyncResult asyncResult)
+   at System.Net.Dns.<>c.<GetHostAddressesAsync>b__25_1(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at MongoDB.Driver.Core.Connections.TcpStreamFactory.ResolveEndPointsAsync(EndPoint initial)
+   at MongoDB.Driver.Core.Connections.TcpStreamFactory.CreateStreamAsync(EndPoint endPoint, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.OpenHelperAsync(CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at MongoDB.Driver.Core.Connections.BinaryConnection.OpenHelperAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Servers.ServerMonitor.InitializeConnectionAsync(CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Servers.ServerMonitor.HeartbeatAsync(CancellationToken cancellationToken)", LastHeartbeatTimestamp: "2023-02-21T14:00:40.4835463Z", LastUpdateTimestamp: "2023-02-21T14:00:40.4835810Z" }] }.
+   at MongoDB.Driver.Core.Clusters.Cluster.ThrowTimeoutException(IServerSelector selector, ClusterDescription description)
+   at MongoDB.Driver.Core.Clusters.Cluster.WaitForDescriptionChangedHelper.HandleCompletedTask(Task completedTask)
+   at MongoDB.Driver.Core.Clusters.Cluster.WaitForDescriptionChanged(IServerSelector selector, ClusterDescription description, Task descriptionChangedTask, TimeSpan timeout, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Clusters.Cluster.SelectServer(IServerSelector selector, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoClient.AreSessionsSupportedAfterServerSelection(CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoClient.AreSessionsSupported(CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoClient.StartImplicitSession(CancellationToken cancellationToken)
+   at MongoDB.Driver.OperationExecutor.StartImplicitSession(CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSession[TResult](Func`2 func, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.BulkWrite(IEnumerable`1 requests, BulkWriteOptions options, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionBase`1.<>c__DisplayClass68_0.<InsertOne>b__0(IEnumerable`1 requests, BulkWriteOptions bulkWriteOptions)
+   at MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, Action`2 bulkWrite)
+   at MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, CancellationToken cancellationToken)
+   at PedeLogo.Catalogo.Api.Controllers.ProdutoController.Post(Produto produto) in /src/src/PedeLogo.Catalogo.Api/Controllers/ProdutoController.cs:line 50
+   at lambda_method(Closure , Object , Object[] )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.Execute(Object target, Object[] parameters)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Prometheus.HttpMetrics.HttpRequestDurationMiddleware.Invoke(HttpContext context)
+   at Prometheus.HttpMetrics.HttpRequestCountMiddleware.Invoke(HttpContext context)
+   at Prometheus.HttpMetrics.HttpInProgressMiddleware.Invoke(HttpContext context)
+   at PedeLogo.Catalogo.Api.Middlewares.HealthMiddleware.<>c.<<UseHealthMiddleware>b__0_0>d.MoveNext() in /src/src/PedeLogo.Catalogo.Api/Middlewares/HealthMiddleware.cs:line 24
+--- End of stack trace from previous location where exception was thrown ---
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)" url=http://localhost/Produto action=Post
+datetime="2023-02-21 14:12:44.0675" eventId=0 logLevel="DEBUG" logger="PedeLogo.Catalogo.Api.Program" message="init main" exception="" url= action=
+datetime="2023-02-21 14:12:44.6648" eventId=0 logLevel="INFO" logger="Microsoft.Hosting.Lifetime" message="Now listening on: http://[::]:80" exception="" url= action=
+datetime="2023-02-21 14:12:44.7028" eventId=0 logLevel="INFO" logger="Microsoft.Hosting.Lifetime" message="Application started. Press Ctrl+C to shut down." exception="" url= action=
+datetime="2023-02-21 14:12:44.7200" eventId=0 logLevel="INFO" logger="Microsoft.Hosting.Lifetime" message="Hosting environment: Production" exception="" url= action=
+datetime="2023-02-21 14:12:44.7354" eventId=0 logLevel="INFO" logger="Microsoft.Hosting.Lifetime" message="Content root path: /app" exception="" url= action=
+datetime="2023-02-21 14:15:34.9893" eventId=0 logLevel="DEBUG" logger="PedeLogo.Catalogo.Api.Program" message="init main" exception="" url= action=
+datetime="2023-02-21 14:15:35.7070" eventId=0 logLevel="INFO" logger="Microsoft.Hosting.Lifetime" message="Now listening on: http://[::]:80" exception="" url= action=
+datetime="2023-02-21 14:15:35.7378" eventId=0 logLevel="INFO" logger="Microsoft.Hosting.Lifetime" message="Application started. Press Ctrl+C to shut down." exception="" url= action=
+datetime="2023-02-21 14:15:35.7562" eventId=0 logLevel="INFO" logger="Microsoft.Hosting.Lifetime" message="Hosting environment: Production" exception="" url= action=
+datetime="2023-02-21 14:15:35.7945" eventId=0 logLevel="INFO" logger="Microsoft.Hosting.Lifetime" message="Content root path: /app" exception="" url= action=
+datetime="2023-02-21 14:17:18.1701" eventId=0 logLevel="DEBUG" logger="PedeLogo.Catalogo.Api.Program" message="init main" exception="" url= action=
+datetime="2023-02-21 14:17:18.6922" eventId=0 logLevel="INFO" logger="Microsoft.Hosting.Lifetime" message="Now listening on: http://[::]:80" exception="" url= action=
+datetime="2023-02-21 14:17:18.7241" eventId=0 logLevel="INFO" logger="Microsoft.Hosting.Lifetime" message="Application started. Press Ctrl+C to shut down." exception="" url= action=
+datetime="2023-02-21 14:17:18.7406" eventId=0 logLevel="INFO" logger="Microsoft.Hosting.Lifetime" message="Hosting environment: Production" exception="" url= action=
+datetime="2023-02-21 14:17:18.7567" eventId=0 logLevel="INFO" logger="Microsoft.Hosting.Lifetime" message="Content root path: /app" exception="" url= action=
