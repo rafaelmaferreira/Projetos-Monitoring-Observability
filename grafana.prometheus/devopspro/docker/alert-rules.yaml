@@ -1,0 +1,22 @@
+groups:
+- name: mongoDB
+  rules:
+  - alert: MongoDBQuery
+    expr: rate(mongodb_op_counters_total{type="query"}[1m]) > 1
+    for: 10s
+    labels:
+      team: mongoDB
+    annotations:
+      summary: Muitas consultas
+      description: O numero de consultas {{labels.type}} no mongoDB {{$labels.instance}} está alta
+
+- name: WebAPI
+  rules:
+  - alert: WebApiAtAXATALTA
+    expr: rate(prometheus_http_requests_total[1m]) > 1
+    for: 30s
+    labels:
+      team: webapi
+    annotations:
+      summary: taxa de transferencia alta
+      description: "{{$labels.instance}} está alta (valor: {{value}})"
