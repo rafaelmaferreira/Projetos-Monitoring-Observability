@@ -1,0 +1,58 @@
+global:
+  resolve_timeout: 5m
+  slack_api_url: 'https://hooks.slack.com/services/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'
+time_interval:
+  - name: workdays
+    time_intervals:
+      - weekdays ['monday:friday']
+  - name: workhours
+    time_intervals:
+      - times:
+        - start_time: 9:00
+          end_time: 18:00
+route:
+  group_by: ['alertname']
+  group_wait: 30s
+  group_interval: 5m
+  repeat_interval: 1h
+  receiver: 'alerta-gmail'
+  routes:
+  - receiver: 'slack'
+    group_wait: 10s
+    matchers: 
+      - alertname = LoadAVG
+    group_by: ['alertname', 'instance']
+    active_time_intervals:
+      - workdays
+      - workhours
+receivers:
+  - name: 'slack'
+    slack_configs:
+    - channel: '#testing'
+      send_resolved: true
+      icon_url: 'https://in.pinterest.com/linuxtips/'    
+      title: |-
+        [{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] {{ CommonLabels.alertname }} na instance {{ .CommonLabels.instance }}
+      text: >-
+        {{ range .Alerts -}}
+        *Alerta:* {{ .Annotations.title }}{{ if .Labels.severity }} - `{{ .labels.severity }}`{{ end }}
+        *Descricao: * {{ .Annotations.description }}
+        *Detalhes:*
+          {{ range .Labels.SortedPairs }} - *{{ .Name }}:* `{{ .Value }}`
+          {{ end }}
+        {{ end }}
+  - name: 'alertas-gmail'
+    email_configs:
+    - to: rafael.maferreira94@gmail.com
+      from: rafael.low1@gmail.com
+      smarthost: smt.gmail.com:587
+      auth_username: rafael.low1@gmail.com
+      auth_identity: rafael.low1@gmail.com
+      auth_password: ferreira1*
+      send_resolved: true
+inhibit_rules:
+  - source_match:
+      severity: 'critical'
+    target_match:
+      severity: 'warning'
+    equal: ['alertname', 'instance']
